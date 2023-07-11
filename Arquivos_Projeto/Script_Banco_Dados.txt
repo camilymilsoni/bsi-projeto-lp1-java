@@ -1,0 +1,71 @@
+Banco: avaliacao_2
+
+
+
+CREATE TABLE cliente
+(
+    id_cli serial,
+    nome_cli character varying(50),
+    logradouro_cli character varying(50),
+    numero_cli integer,
+    bairro_cli character varying(30),
+    cidade_cli character varying(30),
+    estado_cli character varying(2),
+    cep_cli character varying(9),
+    cpf_cli character varying(14),
+    rg_cli character varying(15),
+    CONSTRAINT cliente_pkey PRIMARY KEY (id_cli),
+    CONSTRAINT cliente_cpf_key UNIQUE (cpf_cli)
+)
+
+CREATE TABLE livro(
+	id_livro serial,
+	titulo_livro character varying(50),
+	autor_livro character varying(50),
+	editora_livro character varying(50),
+	categoria_livro character varying(50),
+	idioma_livro character varying(30),
+	CONSTRAINT livro_pkey PRIMARY KEY (id_livro)
+)
+
+CREATE TABLE exemplar(
+	id_exemplar serial,
+   	edicao_exemplar character varying(30),
+	ano_public_exemplar integer,
+	nro_pags_exemplar integer, 
+	id_livro integer,
+	CONSTRAINT exemplar_pkey PRIMARY KEY (id_exemplar),
+	CONSTRAINT livro_fk FOREIGN KEY (id_livro) REFERENCES livro (id_livro)     
+)
+
+CREATE TABLE emprestimo
+(
+    id_emprest serial, 
+    data_emprest date, 
+    qtd_exemplar_emprest integer, 
+    id_cli integer, 
+    CONSTRAINT emprestimo_pkey PRIMARY KEY (id_emprest),
+    CONSTRAINT emprestimo_id_cli_fkey FOREIGN KEY (id_cli) REFERENCES cliente (id_cli)
+)
+
+CREATE TABLE exemplar_emprestimo
+(
+   id_exemplar integer, 
+   id_emprest integer,
+   data_devoluc_exemplar date, 
+   CONSTRAINT exemplar_emprestimo_id_exemplar_fkey FOREIGN KEY (id_exemplar) REFERENCES exemplar (id_exemplar),
+   CONSTRAINT exemplar_emprestimo_id_emprest_fkey FOREIGN KEY (id_emprest) REFERENCES emprestimo (id_emprest)
+)
+
+CREATE TABLE funcionario
+(
+	id_fun serial,
+	nome_fun character varying(50),
+	cpf_fun character varying(14),
+	login_fun character varying(30),
+	senha_fun character varying(50),	
+	tipo_fun character varying(13),
+	CONSTRAINT funcionario_pkey PRIMARY KEY (id_fun),
+	CONSTRAINT funcionario_cpf_key UNIQUE (cpf_fun),
+	CONSTRAINT funcionario_login_key UNIQUE (login_fun)
+)

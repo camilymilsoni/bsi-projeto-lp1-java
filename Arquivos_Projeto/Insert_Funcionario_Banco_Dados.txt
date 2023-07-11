@@ -1,0 +1,21 @@
+Insert into funcionario (nome_fun, cpf_fun, login_fun, senha_fun, tipo_fun) values ( 
+	'CAMILY MILSONI',
+	'123.456.789-01', 
+	'camilyadmin',
+	'FE100AFDC039049FBA059FABFBE056FE0057FF200FF8803E',
+	'ADMINISTRADOR'
+)
+
+Insert into funcionario (nome_fun, cpf_fun, login_fun, senha_fun, tipo_fun) values ( 
+	'CAMILY',
+	'123.456.789-11', 
+	'camilycomum',
+	'FE100AFDC039049FBA059FABFBE056FE0057FF200FF8803E',
+	'COMUM'
+)
+
+Login: camilyadmin
+senha: 123456
+
+Login: camilycomum
+senha: 123456
